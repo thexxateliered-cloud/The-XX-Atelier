@@ -26,15 +26,10 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       font-weight: 300;
       line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
     }
-    /* Editorial Masthead & Menubar */
     header {
       border-bottom: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.97);
-      position: sticky;
-      top: 0;
-      z-index: 20;
+      background: #FFFFFF;
     }
     .masthead-top {
       max-width: 1040px;
@@ -73,12 +68,10 @@
       letter-spacing: 0.14em;
       color: var(--text);
       text-decoration: none;
-      font-weight: 400;
     }
     nav a:hover { color: var(--accent); }
-    nav span.sep { color: var(--border); font-size: 0.8rem; }
+    nav span.sep { color: var(--border); }
 
-    /* Category Directory Strip Under Menu Bar */
     .category-strip {
       border-top: 1px solid var(--border);
       background-color: var(--paper);
@@ -88,10 +81,7 @@
       flex-wrap: wrap;
       gap: 28px;
     }
-    .cat-item {
-      text-decoration: none;
-      text-align: center;
-    }
+    .cat-item { text-decoration: none; text-align: center; }
     .cat-item strong {
       display: block;
       font-size: 0.7rem;
@@ -110,10 +100,8 @@
     .cat-item:hover strong { color: var(--accent); }
 
     main { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-
-    /* Hero Cover Statement */
     .hero {
-      padding: 68px 0 60px;
+      padding: 64px 0;
       text-align: center;
       border-bottom: 1px solid var(--border);
     }
@@ -128,42 +116,27 @@
     }
     .hero h1 {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(2.3rem, 4.5vw, 3.4rem);
+      font-size: clamp(2.2rem, 4.5vw, 3.3rem);
       font-weight: 400;
       line-height: 1.15;
       max-width: 780px;
       margin: 0 auto 20px;
     }
-    .hero p {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 660px;
-      margin: 0 auto;
-    }
+    .hero p { font-size: 1.05rem; color: var(--muted); max-width: 660px; margin: 0 auto; }
 
-    section {
-      padding: 64px 0;
-      border-bottom: 1px solid var(--border);
-    }
+    section { padding: 60px 0; border-bottom: 1px solid var(--border); }
     h2.section-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 2.15rem;
+      font-size: 2.1rem;
       font-weight: 400;
       margin-bottom: 12px;
     }
-    .section-desc {
-      color: var(--muted);
-      font-size: 1rem;
-      max-width: 720px;
-      margin-bottom: 32px;
-    }
+    .section-desc { color: var(--muted); font-size: 1rem; max-width: 720px; margin-bottom: 32px; }
 
-    /* Featured Cover Story Card */
     .cover-story {
       background: var(--paper);
       border: 1px solid var(--border);
-      padding: 40px;
-      margin-bottom: 12px;
+      padding: 36px;
     }
     .story-tag {
       font-size: 0.72rem;
@@ -176,45 +149,31 @@
     }
     .cover-story h3 {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.95rem;
+      font-size: 1.9rem;
       font-weight: 400;
-      line-height: 1.2;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .cover-story h3 a { color: var(--text); text-decoration: none; }
-    .cover-story h3 a:hover { color: var(--accent); }
-    .cover-story p { color: var(--muted); font-size: 0.98rem; max-width: 680px; margin-bottom: 20px; }
+    .cover-story p { color: var(--muted); font-size: 0.98rem; margin-bottom: 20px; }
 
-    /* Two-Column Grid */
     .topic-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 24px;
     }
-    .topic-card {
-      border: 1px solid var(--border);
-      padding: 30px;
-      background: #FFFFFF;
-    }
+    .topic-card { border: 1px solid var(--border); padding: 28px; background: #FFFFFF; }
     .topic-card h3 {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.5rem;
+      font-size: 1.45rem;
       font-weight: 400;
-      line-height: 1.25;
       margin-bottom: 10px;
     }
-    .topic-card p { font-size: 0.94rem; color: var(--muted); margin-bottom: 16px; }
+    .topic-card p { font-size: 0.94rem; color: var(--muted); margin-bottom: 14px; }
 
-    /* Living Weaves Table */
-    .textile-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 24px;
-      font-size: 0.92rem;
-    }
+    .textile-table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 0.92rem; }
     .textile-table th, .textile-table td {
       border: 1px solid var(--border);
-      padding: 16px 18px;
+      padding: 16px;
       text-align: left;
       vertical-align: top;
     }
@@ -224,7 +183,6 @@
       letter-spacing: 0.14em;
       color: var(--accent);
       background: var(--paper);
-      font-weight: 500;
     }
 
     .cta-link {
@@ -240,12 +198,11 @@
     }
     .cta-link:hover { color: var(--accent); border-color: var(--accent); }
 
-    /* Founder Box */
     .founder-box {
       background: var(--paper);
       border: 1px solid var(--border);
       padding: 36px;
-      margin-top: 24px;
+      margin-top: 20px;
       display: flex;
       align-items: flex-start;
       gap: 28px;
@@ -259,7 +216,6 @@
     }
     .founder-box p { font-size: 0.95rem; color: var(--muted); margin-bottom: 12px; }
 
-    /* Subscribe Box */
     .subscribe-box {
       background: var(--paper);
       border: 1px solid var(--border);
@@ -280,7 +236,6 @@
       font-size: 0.92rem;
       margin-right: 8px;
       margin-bottom: 10px;
-      background: #FFFFFF;
     }
     .subscribe-box button {
       padding: 13px 26px;
@@ -298,7 +253,6 @@
       margin: 0 auto;
       padding: 40px 24px;
       font-size: 0.8rem;
-      letter-spacing: 0.06em;
       color: var(--muted);
       display: flex;
       justify-content: space-between;
@@ -306,11 +260,6 @@
       gap: 12px;
     }
     footer a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border); }
-
-    @media (max-width: 640px) {
-      .category-strip { gap: 16px; padding: 10px 12px; }
-      .cover-story { padding: 28px 22px; }
-    }
   </style>
 </head>
 <body>
@@ -329,20 +278,24 @@
       <a href="#about">Founder</a>
     </nav>
     <div class="category-strip">
-      <a href="#fabric-lab" class="cat-item">
-        <strong>The Fabric Lab</strong>
-        <span>Textile Endocrinology</span>
-      </a>
-      <a href="#somatic-cycle" class="cat-item">
-        <strong>Somatic &amp; Cycle</strong>
-        <span>Hormonal Physiology</span>
-      </a>
-      <a href="#pattern-ease" class="cat-item">
-        <strong>Pattern &amp; Ease</strong>
-        <span>Flare-Adaptive Tailoring</span>
-      </a>
-      <a href="#living-weaves" class="cat-item">
-        <strong>Living Weaves</strong>
-        <span>Heritage &amp; Botanical Dyes</span>
-      </a>
-      <a href="#vetted-wardrobe" class="cat-item">
+      <a href="#fabric-lab" class="cat-item"><strong>The Fabric Lab</strong><span>Textile Endocrinology</span></a>
+      <a href="#somatic-cycle" class="cat-item"><strong>Somatic &amp; Cycle</strong><span>Hormonal Physiology</span></a>
+      <a href="#pattern-ease" class="cat-item"><strong>Pattern &amp; Ease</strong><span>Flare-Adaptive Tailoring</span></a>
+      <a href="#living-weaves" class="cat-item"><strong>Living Weaves</strong><span>Heritage &amp; Botanical Dyes</span></a>
+      <a href="#vetted-wardrobe" class="cat-item"><strong>The Vetted Wardrobe</strong><span>Audits &amp; Collaborations</span></a>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <span class="kicker">The Manifesto</span>
+      <h1>Fashion treats the female body as static. Biology knows it is anything but.</h1>
+      <p>India’s first textile-science journal and design studio dedicated to endocrine-safe fabrics and physiology-adaptive fashion for PMOS (formerly PCOS), endometriosis, and the cyclical female body.</p>
+    </div>
+
+    <section id="fabric-lab">
+      <span class="kicker">01 &bull; Textile Endocrinology</span>
+      <h2 class="section-title">The Fabric Lab</h2>
+      <p class="section-desc">Skin is not an impermeable wall; it is a metabolically active organ. <em>The Fabric Lab</em> audits petrochemical fibers, synthetic azo dyes, phthalates, and PFAS finishes to separate endocrine-disrupting garments from biologically safe textiles.</p>
+      <div class="cover-story">
+        <span class="story-tag">Issue 01 &bull; Inaugural Investigation</span>
