@@ -1,0 +1,29 @@
+media:
+  input: images
+  output: /images
+
+content:
+  - name: issues
+    label: Issues
+    type: collection
+    path: issues
+    view:
+      fields: [ title, section, date ]
+    fields:
+      - name: title
+        label: Issue Title
+        type: string
+        required: true
+      - name: section
+        label: Section
+        type: string
+        required: true
+      - name: date
+        label: Publish Date
+        type: date
+      - name: cover
+        label: Cover Image
+        type: image
+      - name: body
+        label: Writing Content
+        type: rich-text
