@@ -378,7 +378,7 @@
     <div>Contact: <a href="mailto:thexxatelier.ed@gmail.com">thexxatelier.ed@gmail.com</a></div>
   </footer>
 
-<!-- AUTOMATICALLY DISPLAYS ISSUES FROM PAGES CMS -->
+  <!-- AUTOMATICALLY DISPLAYS ISSUES FROM PAGES CMS -->
   <script src="https://jsdelivr.net"></script>
   <script>
     async function loadIssues() {
@@ -390,10 +390,10 @@
         for (const file of files) {
           if (!file.name.endsWith('.md')) continue;
           const text = await (await fetch(file.download_url)).text();
-          const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+          const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
           if (!match) continue;
           const meta = {};
-          match[1].split('\n').forEach(line => {
+          match[1].split(/\r?\n/).forEach(line => {
             const [k, ...v] = line.split(':');
             if (k && v.length) meta[k.trim()] = v.join(':').trim().replace(/^["']|["']$/g, '');
           });
@@ -413,6 +413,7 @@
     }
     loadIssues();
   </script>
+
 
 </body>
 </html>
