@@ -378,15 +378,16 @@
     <div>Contact: <a href="mailto:thexxatelier.ed@gmail.com">thexxatelier.ed@gmail.com</a></div>
   </footer>
 
-   <!-- AUTOMATICALLY DISPLAYS ISSUES FROM PAGES CMS -->
+    <!-- AUTOMATICALLY DISPLAYS ISSUES FROM PAGES CMS -->
   <script src="https://jsdelivr.net"></script>
   <script>
     async function loadIssues() {
       const repo = 'thexxateliered-cloud/The-XX-Atelier';
+      const fallback = document.querySelector('.issues-list');
       try {
-        const res = await fetch('https://api.github.com/repos/' + repo + '/contents/issues');
+        const res = await fetch('https://github.com' + repo + '/contents/issues');
         if (!res.ok) {
-          console.log('Folder not found yet:', res.status);
+          if (fallback) fallback.innerHTML = '<p style="color:#888;">Could not load issues (Status: ' + res.status + ')</p>';
           return;
         }
         const files = await res.json();
@@ -395,33 +396,41 @@
           const text = await (await fetch(file.download_url)).text();
           const parts = text.split('---');
           if (parts.length < 3) continue;
-          
+
           const frontmatter = parts.slice(1, 2).join('');
           const bodyMarkdown = parts.slice(2).join('---');
-          
+
           const meta = {};
           frontmatter.split(/\r?\n/).forEach(line => {
             const idx = line.indexOf(':');
             if (idx > -1) {
-              const k = line.slice(0, idx).trim();
+              const k = line.slice(0, idx).trim().toLowerCase();
               const v = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
               meta[k] = v;
             }
           });
 
           const bodyHtml = marked.parse(bodyMarkdown);
-          const container = document.querySelector('.issues-list[data-section="' + meta.section + '"]') || document.querySelector('.issues-list');
+          const cleanSec = (meta.section || '').toLowerCase().replace(/[^a-z]/g, '');
+          let container = fallback;
+          document.querySelectorAll('.issues-list').forEach(el => {
+            const elSec = (el.getAttribute('data-section') || '').toLowerCase().replace(/[^a-z]/g, '');
+            if (cleanSec && elSec === cleanSec) container = el;
+          });
+
           if (container) {
             container.innerHTML += `
               <article style="margin: 28px 0; padding-bottom: 28px; border-bottom: 1px solid #e5e5e5;">
-                ${meta.cover ? `<img src="${meta.cover.replace(/^\//, '')}" style="width:100%; max-height:420px; object-fit:cover; margin-bottom:16px;">` : ''}
+                ${meta.cover ? `<img src="${meta.cover.replace(/^\//, '')}" style="width:100%; max-height:460px; object-fit:cover; margin-bottom:18px;">` : ''}
                 <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:1px; color:#666;">${meta.date || ''}</div>
-                <h3 style="margin:8px 0 14px;">${meta.title || 'Untitled Issue'}</h3>
-                <div style="line-height:1.7;">${bodyHtml}</div>
+                <h3 style="margin:8px 0 14px; font-size:1.6rem;">${meta.title || 'Untitled Issue'}</h3>
+                <div style="line-height:1.75;">${bodyHtml}</div>
               </article>`;
           }
         }
-      } catch (e) { console.error(e); }
+      } catch (e) {
+        if (fallback) fallback.innerHTML = '<p style="color:#888;">Error loading issue: ' + e.message + '</p>';
+      }
     }
     loadIssues();
   </script>
