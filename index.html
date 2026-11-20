@@ -337,6 +337,14 @@
     <div class="hero">
       <span class="kicker">The Manifesto</span>
       <h1>Fashion treats the female body as static. Biology knows it is anything but.</h1>
+    </div>
+     <!-- 5 EDITORIAL SECTIONS -->
+    <section id="fabric-lab"><span class="kicker">Textile Endocrinology</span><h2>The Fabric Lab</h2><div class="issues-list" data-section="The Fabric Lab"></div></section>
+    <section id="somatic-cycle"><span class="kicker">Hormonal Physiology</span><h2>Somatic &amp; Cycle</h2><div class="issues-list" data-section="Somatic & Cycle"></div></section>
+    <section id="pattern-ease"><span class="kicker">Flare-Adaptive Tailoring</span><h2>Pattern &amp; Ease</h2><div class="issues-list" data-section="Pattern & Ease"></div></section>
+    <section id="living-weaves"><span class="kicker">Heritage &amp; Botanical Dyes</span><h2>Living Weaves</h2><div class="issues-list" data-section="Living Weaves"></div></section>
+    <section id="vetted-wardrobe"><span class="kicker">Audits &amp; Collaborations</span><h2>The Vetted Wardrobe</h2><div class="issues-list" data-section="The Vetted Wardrobe"></div></section>
+
           <!-- FOUNDER SECTION (AVANTI BASU) -->
     <section id="founder">
       <span class="kicker">Founder &amp; Masthead</span>
@@ -369,6 +377,42 @@
     <div>&copy; 2026 The XX Atelier. Founded by Avanti Basu.</div>
     <div>Contact: <a href="mailto:thexxatelier.ed@gmail.com">thexxatelier.ed@gmail.com</a></div>
   </footer>
+
+<!-- AUTOMATICALLY DISPLAYS ISSUES FROM PAGES CMS -->
+  <script src="https://jsdelivr.net"></script>
+  <script>
+    async function loadIssues() {
+      const repo = 'thexxateliered-cloud/The-XX-Atelier';
+      try {
+        const res = await fetch(`https://github.com{repo}/contents/issues`);
+        if (!res.ok) return;
+        const files = await res.json();
+        for (const file of files) {
+          if (!file.name.endsWith('.md')) continue;
+          const text = await (await fetch(file.download_url)).text();
+          const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+          if (!match) continue;
+          const meta = {};
+          match[1].split('\n').forEach(line => {
+            const [k, ...v] = line.split(':');
+            if (k && v.length) meta[k.trim()] = v.join(':').trim().replace(/^["']|["']$/g, '');
+          });
+          const bodyHtml = marked.parse(match[2]);
+          const container = document.querySelector(`.issues-list[data-section="${meta.section}"]`) || document.querySelector('.issues-list');
+          if (container) {
+            container.innerHTML += `
+              <article style="margin: 28px 0; padding-bottom: 28px; border-bottom: 1px solid #e5e5e5;">
+                ${meta.cover ? `<img src="${meta.cover.replace(/^\//, '')}" style="width:100%; max-height:420px; object-fit:cover; margin-bottom:16px;">` : ''}
+                <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:1px; color:#666;">${meta.date || ''}</div>
+                <h3 style="margin:8px 0 14px;">${meta.title || 'Untitled Issue'}</h3>
+                <div style="line-height:1.7;">${bodyHtml}</div>
+              </article>`;
+          }
+        }
+      } catch (e) { console.error(e); }
+    }
+    loadIssues();
+  </script>
 
 </body>
 </html>
