@@ -18,7 +18,7 @@ Hydrophilic (water-loving) materials such as unbleached *kora* cotton, flax line
 
 Hydrophobic fibers such as polyester, nylon, and acrylic, which are considered to be the backbone of contemporary fast fashion and most stretch active wear, are derived from refined petroleum, each filament is essentially a smooth, non-porous strand of extruded plastic that cannot absorb water. Instead of wicking away and evaporating, moisture becomes trapped in a thin, stagnant layer between the skin and the garment.
 
-In a humid climate—whether during a monsoon or a crowded afternoon commute—this trapped layer turns into a warm, airless greenhouse.
+In a humid climate, whether during a monsoon or a crowded afternoon commute, this trapped layer turns into a warm, airless greenhouse.
 
 **Why Micro-Climate Matters for PMOS and Sensitive Skin**
 
