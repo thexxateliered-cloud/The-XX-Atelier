@@ -46,4 +46,3 @@ You do not need a complete closet overhaul to protect your skin and hormonal com
 
  Clothing is the one environment we carry with us every waking hour. Choosing fabrics that allow the body to breathe, cool, and expand is not merely a stylistic preference, it is a quiet, daily act of physiological care.
 
- 
