@@ -378,27 +378,39 @@
     <div>Contact: <a href="mailto:thexxatelier.ed@gmail.com">thexxatelier.ed@gmail.com</a></div>
   </footer>
 
-  <!-- AUTOMATICALLY DISPLAYS ISSUES FROM PAGES CMS -->
+   <!-- AUTOMATICALLY DISPLAYS ISSUES FROM PAGES CMS -->
   <script src="https://jsdelivr.net"></script>
   <script>
     async function loadIssues() {
       const repo = 'thexxateliered-cloud/The-XX-Atelier';
       try {
-        const res = await fetch(`https://github.com{repo}/contents/issues`);
-        if (!res.ok) return;
+        const res = await fetch('https://api.github.com/repos/' + repo + '/contents/issues');
+        if (!res.ok) {
+          console.log('Folder not found yet:', res.status);
+          return;
+        }
         const files = await res.json();
         for (const file of files) {
           if (!file.name.endsWith('.md')) continue;
           const text = await (await fetch(file.download_url)).text();
-          const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
-          if (!match) continue;
+          const parts = text.split('---');
+          if (parts.length < 3) continue;
+          
+          const frontmatter = parts.slice(1, 2).join('');
+          const bodyMarkdown = parts.slice(2).join('---');
+          
           const meta = {};
-          match[1].split(/\r?\n/).forEach(line => {
-            const [k, ...v] = line.split(':');
-            if (k && v.length) meta[k.trim()] = v.join(':').trim().replace(/^["']|["']$/g, '');
+          frontmatter.split(/\r?\n/).forEach(line => {
+            const idx = line.indexOf(':');
+            if (idx > -1) {
+              const k = line.slice(0, idx).trim();
+              const v = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
+              meta[k] = v;
+            }
           });
-          const bodyHtml = marked.parse(match[2]);
-          const container = document.querySelector(`.issues-list[data-section="${meta.section}"]`) || document.querySelector('.issues-list');
+
+          const bodyHtml = marked.parse(bodyMarkdown);
+          const container = document.querySelector('.issues-list[data-section="' + meta.section + '"]') || document.querySelector('.issues-list');
           if (container) {
             container.innerHTML += `
               <article style="margin: 28px 0; padding-bottom: 28px; border-bottom: 1px solid #e5e5e5;">
@@ -413,6 +425,7 @@
     }
     loadIssues();
   </script>
+
 
 
 </body>
