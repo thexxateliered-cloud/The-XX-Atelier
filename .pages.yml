@@ -16,8 +16,15 @@ content:
         required: true
       - name: section
         label: Section
-        type: string
+        type: select
         required: true
+        options:
+          values:
+            - The Fabric Lab
+            - Somatic & Cycle
+            - Pattern & Ease
+            - Living Weaves
+            - The Vetted Wardrobe
       - name: date
         label: Publish Date
         type: date
