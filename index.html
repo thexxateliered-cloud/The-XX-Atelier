@@ -378,22 +378,22 @@
     <div>Contact: <a href="mailto:thexxatelier.ed@gmail.com">thexxatelier.ed@gmail.com</a></div>
   </footer>
 
-    <!-- AUTOMATICALLY DISPLAYS ISSUES FROM PAGES CMS -->
+      <!-- AUTOMATICALLY DISPLAYS ISSUES DIRECTLY FROM YOUR SITE -->
   <script src="https://jsdelivr.net"></script>
   <script>
     async function loadIssues() {
-      const repo = 'thexxateliered-cloud/The-XX-Atelier';
       const fallback = document.querySelector('.issues-list');
       try {
-        const res = await fetch('https://github.com' + repo + '/contents/issues');
+        const res = await fetch('issues/list.json?v=' + Date.now());
         if (!res.ok) {
-          if (fallback) fallback.innerHTML = '<p style="color:#888;">Could not load issues (Status: ' + res.status + ')</p>';
+          if (fallback) fallback.innerHTML = '<p style="color:#888;">Could not find issues/list.json</p>';
           return;
         }
-        const files = await res.json();
-        for (const file of files) {
-          if (!file.name.endsWith('.md')) continue;
-          const text = await (await fetch(file.download_url)).text();
+        const filenames = await res.json();
+        for (const name of filenames) {
+          const textRes = await fetch('issues/' + name + '?v=' + Date.now());
+          if (!textRes.ok) continue;
+          const text = await textRes.text();
           const parts = text.split('---');
           if (parts.length < 3) continue;
 
@@ -429,11 +429,12 @@
           }
         }
       } catch (e) {
-        if (fallback) fallback.innerHTML = '<p style="color:#888;">Error loading issue: ' + e.message + '</p>';
+        if (fallback) fallback.innerHTML = '<p style="color:#888;">Error: ' + e.message + '</p>';
       }
     }
     loadIssues();
   </script>
+
 
 
 
