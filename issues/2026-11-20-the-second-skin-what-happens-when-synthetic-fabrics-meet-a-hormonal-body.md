@@ -38,11 +38,11 @@ True luxury lies in clothing that moves with the body, not against it. For decad
 
 You do not need a complete closet overhaul to protect your skin and hormonal comfort, just start by checking the tags on your most-worn clothes:
 
-·        *Prioritize the "First Layer":* Ensure innerwear, sleepwear, and daily clothes worn for 8+ hours are 90%–100% natural fibers.
+·    *Prioritize the "First Layer":* Ensure innerwear, sleepwear, and daily clothes worn for 8+ hours are 90%–100% natural fibers.
 
-·        *Watch for Hidden Blends:* Skip *"cotton-feel," "poly-viscose,"* or *"microfiber"* labels containing a high percentage of synthetic plastic fibers.
+·   *Watch for Hidden Blends:* Skip *"cotton-feel," "poly-viscose,"* or *"microfiber"* labels containing a high percentage of synthetic plastic fibers.
 
-·        *Look for Unbleached and Certified Weaves:* Opt for unbleached *kora* fabrics, natural-dyed handlooms, or GOTS and OEKO-TEX certified textiles free from harsh chemicals.
+·    *Look for Unbleached and Certified Weaves:* Opt for unbleached *kora* fabrics, natural-dyed handlooms, or GOTS and OEKO-TEX certified textiles free from harsh chemicals.
 
  Clothing is the one environment we carry with us every waking hour. Choosing fabrics that allow the body to breathe, cool, and expand is not merely a stylistic preference, it is a quiet, daily act of physiological care.
 
